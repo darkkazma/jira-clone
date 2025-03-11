@@ -1,7 +1,7 @@
 import { useMedia } from "react-use";
 
 import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
@@ -23,7 +23,8 @@ export const ResponsiveModal = ({ children, open, onOpenChange }: ResponsiveModa
           aria-describedby="dialog-description"
         >
           <VisuallyHidden>
-            <DialogTitle>zzz</DialogTitle>
+            <DialogTitle>title...</DialogTitle>
+            <DialogDescription>description...</DialogDescription>
           </VisuallyHidden>
           {children}
         </DialogContent>
