@@ -57,17 +57,17 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
         <SelectTrigger className="w-full lg:w-auto h-8">
           <div className="flex items-center pr-2">
             <ListChecksIcon className="size-4 mr-2" />
-            <SelectValue placeholder="All statuses" />
+            <SelectValue placeholder="전체 진행" />
           </div>
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All statuses</SelectItem>
+          <SelectItem value="all">전체 진행</SelectItem>
           <SelectSeparator />
-          <SelectItem value={TaskStatus.BACKLOG}>Backlog</SelectItem>
-          <SelectItem value={TaskStatus.IN_PROGRESS}>In Progress</SelectItem>
-          <SelectItem value={TaskStatus.IN_REVIEW}>In Review</SelectItem>
-          <SelectItem value={TaskStatus.TODO}>Todo</SelectItem>
-          <SelectItem value={TaskStatus.DONE}>Done</SelectItem>
+          <SelectItem value={TaskStatus.BACKLOG}>기록</SelectItem>
+          <SelectItem value={TaskStatus.IN_PROGRESS}>진행 중</SelectItem>
+          <SelectItem value={TaskStatus.IN_REVIEW}>리뷰 중</SelectItem>
+          <SelectItem value={TaskStatus.TODO}>할일</SelectItem>
+          <SelectItem value={TaskStatus.DONE}>완료</SelectItem>
         </SelectContent>
       </Select>
 
@@ -78,11 +78,11 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
         <SelectTrigger className="w-full lg:w-auto h-8">
           <div className="flex items-center pr-2">
             <UserIcon className="size-4 mr-2" />
-            <SelectValue placeholder="All assignees" />
+            <SelectValue placeholder="전체 담당자" />
           </div>
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All assigness</SelectItem>
+          <SelectItem value="all">전체 담당자</SelectItem>
           <SelectSeparator />
           {memberOptions?.map((member) => (
             <SelectItem key={member.value} value={member.value}>
@@ -99,11 +99,11 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
         <SelectTrigger className="w-full lg:w-auto h-8">
           <div className="flex items-center pr-2">
             <FolderIcon className="size-4 mr-2" />
-            <SelectValue placeholder="All project" />
+            <SelectValue placeholder="전체 프로젝트" />
           </div>
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All project</SelectItem>
+          <SelectItem value="all">전체 프로젝트</SelectItem>
           <SelectSeparator />
           {projectOptions?.map((project) => (
             <SelectItem key={project.value} value={project.value}>
@@ -114,7 +114,7 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
       </Select> 
 
 {/*  Date */}
-      <DatePicker placeholder="Due date" className="h-8 w-full lg:w-auto" value={dueDate ? new Date(dueDate) : undefined} onChange={(date) => {
+      <DatePicker placeholder="종료일" className="h-8 w-full lg:w-auto" value={dueDate ? new Date(dueDate) : undefined} onChange={(date) => {
         setFilters({ dueDate: date ? date.toISOString() : null})
       }} />
     </div>

@@ -10,6 +10,8 @@ import { useWorkspaceId } from "@/features/workspace/hooks/use-workspace-id";
 import { useQueryState } from "nuqs";
 import { DataFilters } from "./data-filters";
 import { useTaskFilters } from "../hooks/use-task-filters";
+import { DataTable } from "./data-table";
+import { columns } from "./columns";
 
 export const TaskViewSwitcher = () => {
 
@@ -51,7 +53,7 @@ export const TaskViewSwitcher = () => {
 
           <Button onClick={open} size="sm" className="w-full lg:w-auto">
             <PlusIcon className="size-4 mr-2" />
-            New
+            신규
           </Button>
         </div>
         <DottedSeparator className="my-4" />
@@ -64,7 +66,7 @@ export const TaskViewSwitcher = () => {
         ) : (
           <>
             <TabsContent value="table" className="mt-0">
-              {JSON.stringify(tasks)}
+              <DataTable columns={columns} data={tasks?.documents ?? [] }/>
             </TabsContent>
             <TabsContent value="kanban" className="mt-0">
               Data kanban
