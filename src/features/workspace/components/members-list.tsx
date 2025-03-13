@@ -21,12 +21,16 @@ export const MembersList = () => {
   const { data } = useGetMembers({ workspaceId });
 
   const [DeleteDialog, deleteConfirm] = useConfirm("Remove Member", "정말 삭제 할꺼냐?", "destructive");
-  const [UpdateDialog, updateConfirm] = useConfirm("Remove Member", "정말 권한을 변경 할꺼냐?");
+  const [UpdateDialog, updateConfirm] = useConfirm("Change a Member", "정말 권한을 변경 할꺼냐?");
 
   const { mutate: deleteMember, isPending: isDeletingMember } = useDeleteMember();
   const { mutate: updateMember, isPending: isUpdatingMember } = useUpdateMember();
 
-  const handleUpdateMember = (memberId: string, role: MemberRole) => {
+  const handleUpdateMember = async (memberId: string, role: MemberRole) => {
+
+    const ok = await updateConfirm();
+    if (!ok) return;
+
     updateMember({
       json: { role },
       param: { memberId },
@@ -81,13 +85,13 @@ export const MembersList = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="end">
-                  <DropdownMenuItem className="font-medium" onClick={() => handleUpdateMember(member.$id, MemberRole.ADMIN)} disabled={false}>
+                  <DropdownMenuItem className="font-medium" onClick={() => handleUpdateMember(member.$id, MemberRole.ADMIN)} disabled={isUpdatingMember}>
                     Set as Administrator
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="font-medium" onClick={() => handleUpdateMember(member.$id, MemberRole.MEMBER)} disabled={false}>
+                  <DropdownMenuItem className="font-medium" onClick={() => handleUpdateMember(member.$id, MemberRole.MEMBER)} disabled={isUpdatingMember}>
                     Set as Member
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="font-medium text-amber-700" onClick={() => handleDeleteMember(member.$id)} disabled={false}>
+                  <DropdownMenuItem className="font-medium text-amber-700" onClick={() => handleDeleteMember(member.$id)} disabled={isDeletingMember}>
                     Remove {member.name}
                   </DropdownMenuItem>
                 </DropdownMenuContent>

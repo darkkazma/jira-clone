@@ -5,7 +5,7 @@ export const useGetWorkSpaces = () => {
   const query = useQuery({
     queryKey: ["workspaces"],
     queryFn: async () => {
-      const response = await client.api.workspace["$get"]();
+      const response = await client.api.workspaces["$get"]();
       if (!response.ok) {
         throw new Error("Failed to fetch workspaces");
       }

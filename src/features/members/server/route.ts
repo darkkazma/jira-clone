@@ -82,11 +82,12 @@ const app = new Hono()
     const databases = c.get("databases");
 
     const memberToUpdate = await databases.getDocument(DATABASE_ID, MEMBERS_ID, memberId);
+
     const allMembersInWorkspace = await databases.listDocuments(DATABASE_ID, MEMBERS_ID, [Query.equal("workspaceId", memberToUpdate.workspaceId)]);
 
     const member = await getMember({
       databases,
-      workspaceId: memberToUpdate.worspaceId,
+      workspaceId: memberToUpdate.workspaceId,
       userId: user.$id,
     });
 
