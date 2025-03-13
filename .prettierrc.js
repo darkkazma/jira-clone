@@ -1,5 +1,5 @@
 module.exports = {
-  printWidth: 100, //코드 한줄 최대치
+  // printWidth: 100, //코드 한줄 최대치
   semi: true, //코드 마지막에 세미콜론
   singleQuote: false, //문자열을 작은따옴표로 작성할것인지(false = 큰 따옴표)
   trailingComma: "all", //객체나 배열 등에 맨 마지막에도 콤마
